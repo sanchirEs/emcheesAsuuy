@@ -40,14 +40,14 @@ export default function ArticleSection() {
   return (
     <section className="article-section">
       <div className="container">
-        <div className="section-header sec-header-one text-center aos" data-aos="fade-up">
+        <div className="section-header sec-header-one text-center " data-="fade-up">
           <span className="badge badge-primary">Recent Blogs</span>
           <h2>Stay Updated With Our Latest Articles</h2>
         </div>
         <div className="row g-4">
           {articles.map((a, i) => (
             <div key={i} className="col-lg-6">
-              <div className="article-item aos" data-aos="fade-up">
+              <div className="article-item " data-="fade-up">
                 <div className="article-img">
                   <a href={a.href}>
                     <img src={a.img} className="img-fluid" alt={a.title} />
@@ -68,7 +68,7 @@ export default function ArticleSection() {
             </div>
           ))}
         </div>
-        <div className="text-center load-item aos" data-aos="fade-up">
+        <div className="text-center load-item " data-="fade-up">
           <a href="/blog-grid.html" className="btn btn-dark">
             View All Articles
             <i className="isax isax-arrow-right-3 ms-2" />

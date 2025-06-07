@@ -4,7 +4,7 @@ import { ReactNode, Suspense } from 'react';
 import Script from 'next/script';
 import { Header, Footer, Topbar } from '@/components/layout';
 import { InfoSection } from '@/components/sections';
-import { RuntimeEffects } from '@/components/ui';
+// import { RuntimeEffects } from '@/components/ui';
 import { Loading } from '@/components/shared';
 
 export const metadata = {
@@ -56,7 +56,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <link rel="stylesheet" href="/assets/css/feather.css" />
         <link rel="stylesheet" href="/assets/css/owl.carousel.min.css" />
         <link rel="stylesheet" href="/assets/css/slick.css" />
-        <link rel="stylesheet" href="/assets/css/aos.css" />
+        {/* <link rel="stylesheet" href="/assets/css/.css" /> */}
         <link rel="stylesheet" href="/assets/css/bootstrap-datetimepicker.min.css" />
 
         {/* template bundle + overrides */}
@@ -72,7 +72,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <Suspense fallback={<Loading />}>{children}</Suspense>
           </main>
           <InfoSection />
-          <RuntimeEffects />
+          {/* <RuntimeEffects /> */}
           <Footer />
 
           {/* core JS */}

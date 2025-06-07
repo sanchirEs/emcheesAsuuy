@@ -4,7 +4,7 @@ export default function ReasonsSection() {
     <section className="reason-section">
       <div className="container">
         {/* header */}
-        <div className="section-header sec-header-one text-center aos" data-aos="fade-up">
+        <div className="section-header sec-header-one text-center " data-="fade-up">
           <span className="badge badge-primary">Why Book With Us</span>
           <h2>Compelling Reasons to Choose</h2>
         </div>
@@ -12,7 +12,7 @@ export default function ReasonsSection() {
         {/* three reason cards */}
         <div className="row row-gap-4 justify-content-center">
           <div className="col-lg-4 col-md-6">
-            <div className="reason-item aos" data-aos="fade-up">
+            <div className="reason-item " data-="fade-up">
               <h6 className="mb-2">
                 <i className="isax isax-tag-user5 text-orange me-2"></i>
                 Follow-Up Care
@@ -25,7 +25,7 @@ export default function ReasonsSection() {
           </div>
 
           <div className="col-lg-4 col-md-6">
-            <div className="reason-item aos" data-aos="fade-up">
+            <div className="reason-item " data-="fade-up">
               <h6 className="mb-2">
                 <i className="isax isax-voice-cricle text-purple me-2"></i>
                 Patient-Centered Approach
@@ -38,7 +38,7 @@ export default function ReasonsSection() {
           </div>
 
           <div className="col-lg-4 col-md-6">
-            <div className="reason-item aos" data-aos="fade-up">
+            <div className="reason-item " data-="fade-up">
               <h6 className="mb-2">
                 <i className="isax isax-wallet-add-15 text-cyan me-2"></i>
                 Convenient Access

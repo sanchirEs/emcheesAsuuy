@@ -28,7 +28,7 @@ export default function CompanySection() {
   }, []);
 
   return (
-    <section className="company-section bg-dark aos" data-aos="fade-up">
+    <section className="company-section bg-dark " data-="fade-up">
       <div className="container">
         <div className="section-header sec-header-one text-center">
           <h6 className="text-light">Trusted by 5+ million people at companies like</h6>

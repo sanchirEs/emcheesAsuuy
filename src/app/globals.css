@@ -10,7 +10,7 @@
        (only keep ONE carousel lib → Swiper; Owl/Slick can go later)      
    --------------------------------------------------------------------- */
 @import "bootstrap/dist/css/bootstrap.min.css";  /* grid & utilities       */
-@import "aos/dist/aos.css";                      /* scroll-animation        */
+/* @import "aos/dist/aos.css";                      scroll-animation        */
 @import "swiper/css";                            /* Swiper core             */
 @import "swiper/css/navigation";                /* Swiper nav arrows       */
 @import "swiper/css/pagination";                /* Swiper dots             */

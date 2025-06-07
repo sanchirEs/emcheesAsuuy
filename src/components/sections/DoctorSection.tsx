@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect } from 'react';
-import Script from 'next/script';
 
 export default function DoctorSection() {
   useEffect(() => {
@@ -29,12 +28,12 @@ export default function DoctorSection() {
   return (
     <section className="doctor-section">
       <div className="container">
-        <div className="section-header sec-header-one text-center aos" data-aos="fade-up">
+        <div className="section-header sec-header-one text-center " data-="fade-up">
           <span className="badge badge-primary">Featured Doctors</span>
           <h2>Our Highlighted Doctors</h2>
         </div>
 
-        <div className="doctors-slider owl-carousel aos" data-aos="fade-up">
+        <div className="doctors-slider owl-carousel " data-="fade-up">
           {/* Doctor 1 */}
           <div className="card">
             <div className="card-img card-img-hover">
@@ -45,9 +44,15 @@ export default function DoctorSection() {
                 <span className="badge bg-orange">
                   <i className="fa-solid fa-star me-1"></i>5.0
                 </span>
-                <a href="javascript:void(0)" className="fav-icon">
+                <button
+                  type="button"
+                  className="fav-icon"
+                  onClick={() => {
+                    // TODO: toggle “favorite” state here
+                  }}
+                >
                   <i className="fa fa-heart"></i>
-                </a>
+                </button>
               </div>
             </div>
             <div className="card-body p-0">
@@ -100,9 +105,15 @@ export default function DoctorSection() {
                 <span className="badge bg-orange">
                   <i className="fa-solid fa-star me-1"></i>4.6
                 </span>
-                <a href="javascript:void(0)" className="fav-icon">
+                <button
+                  type="button"
+                  className="fav-icon"
+                  onClick={() => {
+                    // TODO: toggle “favorite” state here
+                  }}
+                >
                   <i className="fa fa-heart"></i>
-                </a>
+                </button>
               </div>
             </div>
             <div className="card-body p-0">
@@ -155,9 +166,15 @@ export default function DoctorSection() {
                 <span className="badge bg-orange">
                   <i className="fa-solid fa-star me-1"></i>4.8
                 </span>
-                <a href="javascript:void(0)" className="fav-icon">
+                <button
+                  type="button"
+                  className="fav-icon"
+                  onClick={() => {
+                    // TODO: toggle “favorite” state here
+                  }}
+                >
                   <i className="fa fa-heart"></i>
-                </a>
+                </button>
               </div>
             </div>
             <div className="card-body p-0">
@@ -210,9 +227,15 @@ export default function DoctorSection() {
                 <span className="badge bg-orange">
                   <i className="fa-solid fa-star me-1"></i>4.8
                 </span>
-                <a href="javascript:void(0)" className="fav-icon">
+                <button
+                  type="button"
+                  className="fav-icon"
+                  onClick={() => {
+                    // TODO: toggle “favorite” state here
+                  }}
+                >
                   <i className="fa fa-heart"></i>
-                </a>
+                </button>
               </div>
             </div>
             <div className="card-body p-0">
@@ -265,9 +288,15 @@ export default function DoctorSection() {
                 <span className="badge bg-orange">
                   <i className="fa-solid fa-star me-1"></i>4.2
                 </span>
-                <a href="javascript:void(0)" className="fav-icon">
+                <button
+                  type="button"
+                  className="fav-icon"
+                  onClick={() => {
+                    // TODO: toggle “favorite” state here
+                  }}
+                >
                   <i className="fa fa-heart"></i>
-                </a>
+                </button>
               </div>
             </div>
             <div className="card-body p-0">

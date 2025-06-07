@@ -6,12 +6,12 @@ export default function InfoSection() {
       <div className="container">
         <div className="contact-info">
           <div className="d-lg-flex align-items-center justify-content-between w-100 gap-4">
-            <div className="mb-4 mb-lg-0 aos" data-aos="fade-up">
+            <div className="mb-4 mb-lg-0 " data-="fade-up">
               <h6 className="display-6 text-white">Working for Your Better Health.</h6>
             </div>
             <div
-              className="d-sm-flex align-items-center justify-content-lg-end gap-4 aos"
-              data-aos="fade-up"
+              className="d-sm-flex align-items-center justify-content-lg-end gap-4 "
+              data-="fade-up"
             >
               <div className="con-info d-flex align-items-center mb-3 mb-sm-0">
                 <span className="con-icon">

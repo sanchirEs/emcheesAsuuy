@@ -22,11 +22,11 @@ export default function Speciality() {
   return (
     <section className="speciality-section">
       <div className="container">
-        <div className="section-header sec-header-one text-center aos" data-aos="fade-up">
+        <div className="section-header sec-header-one text-center " data-="fade-up">
           <span className="badge badge-primary">Top Specialties</span>
           <h2>Highlighting the Care & Support</h2>
         </div>
-        <div className="owl-carousel spciality-slider aos" data-aos="fade-up">
+        <div className="owl-carousel spciality-slider " data-="fade-up">
           <div className="spaciality-item">
             <div className="spaciality-img">
               <img src="/assets/img/specialities/speciality-01.jpg" alt="img" />

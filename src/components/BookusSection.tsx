@@ -6,9 +6,9 @@ import Script from 'next/script';
 
 export default function BookusSection() {
   // make sure Bootstrap’s collapse/accordion JS is present
-//   useEffect(() => {
-//     import('/public/assets/js/bootstrap.bundle.min.js').catch(() => {});
-//   }, []);
+  //   useEffect(() => {
+  //     import('/public/assets/js/bootstrap.bundle.min.js').catch(() => {});
+  //   }, []);
 
   return (
     <>
@@ -23,25 +23,13 @@ export default function BookusSection() {
               <div className="bookus-img">
                 <div className="row g-3">
                   <div className="col-md-12 aos" data-aos="fade-up">
-                    <img
-                      src="/assets/img/book-01.jpg"
-                      alt="img"
-                      className="img-fluid"
-                    />
+                    <img src="/assets/img/book-01.jpg" alt="img" className="img-fluid" />
                   </div>
                   <div className="col-sm-6 aos" data-aos="fade-up">
-                    <img
-                      src="/assets/img/book-02.jpg"
-                      alt="img"
-                      className="img-fluid"
-                    />
+                    <img src="/assets/img/book-02.jpg" alt="img" className="img-fluid" />
                   </div>
                   <div className="col-sm-6 aos" data-aos="fade-up">
-                    <img
-                      src="/assets/img/book-03.jpg"
-                      alt="img"
-                      className="img-fluid"
-                    />
+                    <img src="/assets/img/book-03.jpg" alt="img" className="img-fluid" />
                   </div>
                 </div>
               </div>
@@ -49,23 +37,17 @@ export default function BookusSection() {
 
             {/* ------------ text + accordion ------------ */}
             <div className="col-lg-6">
-              <div
-                className="section-header sec-header-one mb-2 aos"
-                data-aos="fade-up"
-              >
+              <div className="section-header sec-header-one mb-2 aos" data-aos="fade-up">
                 <span className="badge badge-primary">Why Book With Us</span>
                 <h2 className="text-white mb-3">
                   We are committed to understanding your{' '}
-                  <span className="text-primary-gradient">
-                    unique needs and delivering care.
-                  </span>
+                  <span className="text-primary-gradient">unique needs and delivering care.</span>
                 </h2>
               </div>
               <p className="text-light mb-4">
-                As a trusted healthcare provider in our community, we are
-                passionate about promoting health and wellness beyond the
-                clinic. We actively engage in community outreach programs, health
-                fairs, and educational workshop.
+                As a trusted healthcare provider in our community, we are passionate about promoting
+                health and wellness beyond the clinic. We actively engage in community outreach
+                programs, health fairs, and educational workshop.
               </p>
 
               {/* FAQ / Accordion */}
@@ -94,9 +76,9 @@ export default function BookusSection() {
                       <div className="accordion-body">
                         <div className="accordion-content">
                           <p>
-                            We envision a community where everyone has access to
-                            high-quality healthcare and the resources they need
-                            to lead healthy, fulfilling lives.
+                            We envision a community where everyone has access to high-quality
+                            healthcare and the resources they need to lead healthy, fulfilling
+                            lives.
                           </p>
                         </div>
                       </div>
@@ -125,9 +107,9 @@ export default function BookusSection() {
                       <div className="accordion-body">
                         <div className="accordion-content">
                           <p>
-                            We envision a community where everyone has access to
-                            high-quality healthcare and the resources they need
-                            to lead healthy, fulfilling lives.
+                            We envision a community where everyone has access to high-quality
+                            healthcare and the resources they need to lead healthy, fulfilling
+                            lives.
                           </p>
                         </div>
                       </div>
@@ -149,8 +131,8 @@ export default function BookusSection() {
                   <div className="book-info">
                     <h6 className="text-white mb-2">Search For Doctors</h6>
                     <p className="fs-14 text-light">
-                      Search for a doctor based on specialization, location, or
-                      availability for your Treatements
+                      Search for a doctor based on specialization, location, or availability for
+                      your Treatements
                     </p>
                   </div>
                   <div className="way-icon">
@@ -167,8 +149,8 @@ export default function BookusSection() {
                   <div className="book-info">
                     <h6 className="text-white mb-2">Check Doctor Profile</h6>
                     <p className="fs-14 text-light">
-                      Explore detailed doctor profiles on our platform to make
-                      informed healthcare decisions.
+                      Explore detailed doctor profiles on our platform to make informed healthcare
+                      decisions.
                     </p>
                   </div>
                   <div className="way-icon">
@@ -185,8 +167,8 @@ export default function BookusSection() {
                   <div className="book-info">
                     <h6 className="text-white mb-2">Schedule Appointment</h6>
                     <p className="fs-14 text-light">
-                      After choose your preferred doctor, select a convenient
-                      time slot, &amp; confirm your appointment.
+                      After choose your preferred doctor, select a convenient time slot, &amp;
+                      confirm your appointment.
                     </p>
                   </div>
                   <div className="way-icon">
@@ -203,8 +185,8 @@ export default function BookusSection() {
                   <div className="book-info">
                     <h6 className="text-white mb-2">Get Your Solution</h6>
                     <p className="fs-14 text-light">
-                      Discuss your health concerns with the doctor and receive
-                      the personalized advice &amp; solution.
+                      Discuss your health concerns with the doctor and receive the personalized
+                      advice &amp; solution.
                     </p>
                   </div>
                 </div>

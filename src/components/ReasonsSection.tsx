@@ -4,10 +4,7 @@ export default function ReasonsSection() {
     <section className="reason-section">
       <div className="container">
         {/* header */}
-        <div
-          className="section-header sec-header-one text-center aos"
-          data-aos="fade-up"
-        >
+        <div className="section-header sec-header-one text-center aos" data-aos="fade-up">
           <span className="badge badge-primary">Why Book With Us</span>
           <h2>Compelling Reasons to Choose</h2>
         </div>
@@ -21,8 +18,8 @@ export default function ReasonsSection() {
                 Follow-Up Care
               </h6>
               <p className="fs-14 mb-0">
-                We ensure continuity of care through regular follow-ups and
-                communication, helping you stay on track with health goals.
+                We ensure continuity of care through regular follow-ups and communication, helping
+                you stay on track with health goals.
               </p>
             </div>
           </div>
@@ -34,9 +31,8 @@ export default function ReasonsSection() {
                 Patient-Centered Approach
               </h6>
               <p className="fs-14 mb-0">
-                We prioritize your comfort and preferences, tailoring our
-                services to meet your individual needs and Care from Our
-                Experts
+                We prioritize your comfort and preferences, tailoring our services to meet your
+                individual needs and Care from Our Experts
               </p>
             </div>
           </div>
@@ -48,8 +44,8 @@ export default function ReasonsSection() {
                 Convenient Access
               </h6>
               <p className="fs-14 mb-0">
-                Easily book appointments online or through our dedicated
-                customer service team, with flexible hours to fit your schedule.
+                Easily book appointments online or through our dedicated customer service team, with
+                flexible hours to fit your schedule.
               </p>
             </div>
           </div>

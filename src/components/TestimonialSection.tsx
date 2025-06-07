@@ -5,11 +5,11 @@ import { useEffect } from 'react';
 import Script from 'next/script';
 
 export default function TestimonialSection() {
-//   // ensure OwlCarousel & (optionally) counter-up JS are present
-//   useEffect(() => {
-//     import('/public/assets/js/owl.carousel.min.js').catch(() => {});
-//     import('/public/assets/js/jquery.counterup.min.js').catch(() => {});
-//   }, []);
+  //   // ensure OwlCarousel & (optionally) counter-up JS are present
+  //   useEffect(() => {
+  //     import('/public/assets/js/owl.carousel.min.js').catch(() => {});
+  //     import('/public/assets/js/jquery.counterup.min.js').catch(() => {});
+  //   }, []);
 
   return (
     <>
@@ -20,19 +20,13 @@ export default function TestimonialSection() {
       <section className="testimonial-section-one">
         <div className="container">
           {/* header */}
-          <div
-            className="section-header sec-header-one text-center aos"
-            data-aos="fade-up"
-          >
+          <div className="section-header sec-header-one text-center aos" data-aos="fade-up">
             <span className="badge badge-primary">Testimonials</span>
             <h2>15k Users Trust Doccure Worldwide</h2>
           </div>
 
           {/* slider */}
-          <div
-            className="owl-carousel testimonials-slider aos"
-            data-aos="fade-up"
-          >
+          <div className="owl-carousel testimonials-slider aos" data-aos="fade-up">
             {/* card 1 */}
             <div className="card shadow-none mb-0">
               <div className="card-body">
@@ -50,9 +44,8 @@ export default function TestimonialSection() {
                 </div>
                 <h6 className="fs-16 fw-medium mb-2">Nice Treatment</h6>
                 <p>
-                  I had a wonderful experience the staff was friendly and
-                  attentive, and Dr. Smith took the time to explain everything
-                  clearly.
+                  I had a wonderful experience the staff was friendly and attentive, and Dr. Smith
+                  took the time to explain everything clearly.
                 </p>
                 <div className="d-flex align-items-center">
                   <a href="javascript:void(0);" className="avatar avatar-lg">
@@ -89,8 +82,8 @@ export default function TestimonialSection() {
                 </div>
                 <h6 className="fs-16 fw-medium mb-2">Good Hospitability</h6>
                 <p>
-                  Genuinely cares about his patients. He helped me understand my
-                  condition and worked with me to create a plan.
+                  Genuinely cares about his patients. He helped me understand my condition and
+                  worked with me to create a plan.
                 </p>
                 <div className="d-flex align-items-center">
                   <a href="javascript:void(0);" className="avatar avatar-lg">
@@ -127,8 +120,8 @@ export default function TestimonialSection() {
                 </div>
                 <h6 className="fs-16 fw-medium mb-2">Nice Treatment</h6>
                 <p>
-                  I had a great experience with Dr. Chen. She was not only
-                  professional but also made me feel comfortable discussing.
+                  I had a great experience with Dr. Chen. She was not only professional but also
+                  made me feel comfortable discussing.
                 </p>
                 <div className="d-flex align-items-center">
                   <a href="javascript:void(0);" className="avatar avatar-lg">
@@ -165,9 +158,8 @@ export default function TestimonialSection() {
                 </div>
                 <h6 className="fs-16 fw-medium mb-2">Excellent Service</h6>
                 <p>
-                  I had a wonderful experience the staff was friendly and
-                  attentive, and Dr. Smith took the time to explain everything
-                  clearly.
+                  I had a wonderful experience the staff was friendly and attentive, and Dr. Smith
+                  took the time to explain everything clearly.
                 </p>
                 <div className="d-flex align-items-center">
                   <a href="javascript:void(0);" className="avatar avatar-lg">

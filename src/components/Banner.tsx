@@ -74,7 +74,11 @@ export default function Banner() {
                   <div className="search-input search-calendar-line">
                     <i className="isax isax-calendar-tick5"></i>
                     <div className="mb-0">
-                      <input type="text" className="form-control datetimepicker" placeholder="Date" />
+                      <input
+                        type="text"
+                        className="form-control datetimepicker"
+                        placeholder="Date"
+                      />
                     </div>
                   </div>
                   <div className="form-search-btn">

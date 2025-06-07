@@ -127,8 +127,7 @@
 //   );
 // }
 
-
-'use client'
+'use client';
 
 export default function Footer() {
   return (
@@ -201,9 +200,7 @@ export default function Footer() {
             <div className="col-lg-4 col-md-7">
               <div className="footer-widget">
                 <h6 className="footer-title">Newsletter</h6>
-                <p className="mb-2">
-                  Subscribe &amp; Stay Updated from the Doccure
-                </p>
+                <p className="mb-2">Subscribe &amp; Stay Updated from the Doccure</p>
                 <div className="subscribe-input">
                   <form action="#">
                     <input
@@ -260,9 +257,7 @@ export default function Footer() {
       <div className="footer-bottom">
         <div className="container">
           <div className="copyright d-flex flex-column flex-md-row align-items-center justify-content-between">
-            <p className="mb-0">
-              &copy; {new Date().getFullYear()} Doccure. All Rights Reserved
-            </p>
+            <p className="mb-0">&copy; {new Date().getFullYear()} Doccure. All Rights Reserved</p>
             <ul className="policy-menu d-flex gap-3 mb-0">
               {['Legal Notice', 'Privacy Policy', 'Refund Policy'].map((p, i) => (
                 <li key={i}>
@@ -274,10 +269,7 @@ export default function Footer() {
               {[1, 2, 3, 4, 5, 6].map((n) => (
                 <li key={n}>
                   <a href="#">
-                    <img
-                      src={`/assets/img/icons/card-0${n}.svg`}
-                      alt=""
-                    />
+                    <img src={`/assets/img/icons/card-0${n}.svg`} alt="" />
                   </a>
                 </li>
               ))}
@@ -286,5 +278,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

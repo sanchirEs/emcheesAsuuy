@@ -1,26 +1,26 @@
 // components/Header.tsx
-'use client'
+'use client';
 
-import { useEffect } from 'react'
-import Link from 'next/link'
+import { useEffect } from 'react';
+import Link from 'next/link';
 
 export default function Header() {
   useEffect(() => {
-    const mobileBtn = document.getElementById('mobile_btn')
-    const menuClose = document.getElementById('menu_close')
-    const headerMenu = document.querySelector('.header-menu')
+    const mobileBtn = document.getElementById('mobile_btn');
+    const menuClose = document.getElementById('menu_close');
+    const headerMenu = document.querySelector('.header-menu');
 
-    const openMenu = () => headerMenu?.classList.add('menu-open')
-    const closeMenu = () => headerMenu?.classList.remove('menu-open')
+    const openMenu = () => headerMenu?.classList.add('menu-open');
+    const closeMenu = () => headerMenu?.classList.remove('menu-open');
 
-    mobileBtn?.addEventListener('click', openMenu)
-    menuClose?.addEventListener('click', closeMenu)
+    mobileBtn?.addEventListener('click', openMenu);
+    menuClose?.addEventListener('click', closeMenu);
 
     return () => {
-      mobileBtn?.removeEventListener('click', openMenu)
-      menuClose?.removeEventListener('click', closeMenu)
-    }
-  }, [])
+      mobileBtn?.removeEventListener('click', openMenu);
+      menuClose?.removeEventListener('click', closeMenu);
+    };
+  }, []);
 
   return (
     <header className="header header-custom header-fixed inner-header relative">
@@ -51,7 +51,6 @@ export default function Header() {
               </div>
 
               <ul className="main-nav">
-
                 {/* Home mega-menu */}
                 <li className="has-submenu megamenu active">
                   <a href="#">
@@ -421,5 +420,5 @@ export default function Header() {
         </nav>
       </div>
     </header>
-  )
+  );
 }

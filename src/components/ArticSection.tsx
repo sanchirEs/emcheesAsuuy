@@ -1,5 +1,5 @@
 // components/ArticleSection.tsx
-'use client'
+'use client';
 
 export default function ArticleSection() {
   const articles = [
@@ -9,7 +9,7 @@ export default function ArticleSection() {
       category: 'Treatments',
       title: 'Understanding and Preventing Glaucoma: A Detailed Guide',
       excerpt: 'Glaucoma is a leading cause of blind worldwide, yet many....',
-      href: '/blog-details'
+      href: '/blog-details',
     },
     {
       img: '/assets/img/blog/article-02.jpg',
@@ -17,7 +17,7 @@ export default function ArticleSection() {
       category: 'Neurology',
       title: 'Discover the intersection of technology and neurology, transforming....',
       excerpt: 'Discover the intersection of technology and neurology, transforming....',
-      href: '/blog-details'
+      href: '/blog-details',
     },
     {
       img: '/assets/img/blog/article-03.jpg',
@@ -25,7 +25,7 @@ export default function ArticleSection() {
       category: 'Dental',
       title: '5 Essential Tips for Maintaining Optimal Oral Health',
       excerpt: 'Learn the top five daily practices to keep your teeth....',
-      href: '/blog-details'
+      href: '/blog-details',
     },
     {
       img: '/assets/img/blog/article-04.jpg',
@@ -33,17 +33,14 @@ export default function ArticleSection() {
       category: 'Care & Treatment',
       title: 'Beating Strong: The Digital Revol in Cardiac Care',
       excerpt: 'Discover how digital advancements are transforming cardiac care...',
-      href: '/blog-details'
-    }
-  ]
+      href: '/blog-details',
+    },
+  ];
 
   return (
     <section className="article-section">
       <div className="container">
-        <div
-          className="section-header sec-header-one text-center aos"
-          data-aos="fade-up"
-        >
+        <div className="section-header sec-header-one text-center aos" data-aos="fade-up">
           <span className="badge badge-primary">Recent Blogs</span>
           <h2>Stay Updated With Our Latest Articles</h2>
         </div>
@@ -61,9 +58,7 @@ export default function ArticleSection() {
                   </div>
                 </div>
                 <div className="article-info">
-                  <span className="badge badge-cyan mb-2">
-                    {a.category}
-                  </span>
+                  <span className="badge badge-cyan mb-2">{a.category}</span>
                   <h6 className="mb-2">
                     <a href={a.href}>{a.title}</a>
                   </h6>
@@ -81,5 +76,5 @@ export default function ArticleSection() {
         </div>
       </div>
     </section>
-  )
+  );
 }

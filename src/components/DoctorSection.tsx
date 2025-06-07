@@ -1,15 +1,15 @@
-'use client'
+'use client';
 
-import { useEffect } from 'react'
-import Script from 'next/script'
+import { useEffect } from 'react';
+import Script from 'next/script';
 
 export default function DoctorSection() {
   useEffect(() => {
     // re-init AOS on client
-    ;(window as any).AOS?.refresh?.()
+    (window as any).AOS?.refresh?.();
 
     // init Owl Carousel
-    const $ = (window as any).jQuery
+    const $ = (window as any).jQuery;
     if ($ && typeof $.fn.owlCarousel === 'function') {
       $('.doctors-slider').owlCarousel({
         loop: true,
@@ -17,30 +17,24 @@ export default function DoctorSection() {
         nav: false,
         dots: true,
         responsive: {
-          0:    { items: 1 },
-          576:  { items: 2 },
-          768:  { items: 3 },
-          1200: { items: 4 }
-        }
-      })
+          0: { items: 1 },
+          576: { items: 2 },
+          768: { items: 3 },
+          1200: { items: 4 },
+        },
+      });
     }
-  }, [])
+  }, []);
 
   return (
     <section className="doctor-section">
       <div className="container">
-        <div
-          className="section-header sec-header-one text-center aos"
-          data-aos="fade-up"
-        >
+        <div className="section-header sec-header-one text-center aos" data-aos="fade-up">
           <span className="badge badge-primary">Featured Doctors</span>
           <h2>Our Highlighted Doctors</h2>
         </div>
 
-        <div
-          className="doctors-slider owl-carousel aos"
-          data-aos="fade-up"
-        >
+        <div className="doctors-slider owl-carousel aos" data-aos="fade-up">
           {/* Doctor 1 */}
           <div className="card">
             <div className="card-img card-img-hover">
@@ -320,5 +314,5 @@ export default function DoctorSection() {
         <div className="doctor-nav nav-bottom owl-nav"></div>
       </div>
     </section>
-  )
+  );
 }

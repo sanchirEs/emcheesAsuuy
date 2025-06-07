@@ -3,21 +3,37 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbopack",
+    "sass": "sass public/assets/scss/main.scss public/assets/css/style.css --no-source-map --style=compressed",
+    "sass:watch": "npm run sass -- --watch",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint --fix",
+    "format": "prettier . --write"
   },
   "dependencies": {
+    "aos": "^2.3.4",
+    "next": "15.3.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "next": "15.3.3"
+    "react-owl-carousel": "^2.3.3",
+    "swiper": "^11.2.8"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
-    "eslint": "^9",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4.1.8",
+    "@types/node": "^22.15.30",
+    "@types/react": "^19.1.6",
+    "autoprefixer": "^10.4.21",
+    "eslint": "^9.28.0",
     "eslint-config-next": "15.3.3",
-    "@eslint/eslintrc": "^3"
+    "eslint-plugin-tailwindcss": "^3.18.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.1.0",
+    "postcss-nesting": "^13.0.1",
+    "prettier": "^3.5.3",
+    "sass": "^1.89.1",
+    "tailwindcss": "^4",
+    "typescript": "^5.8.3"
   }
 }

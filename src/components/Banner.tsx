@@ -6,7 +6,7 @@ export default function Banner() {
         <div className="row align-items-center">
           {/* ---------- left column ---------- */}
           <div className="col-lg-7">
-            <div className="banner-content aos" data-aos="fade-up">
+            <div className="banner-content aos" >
               {/* rating / appointments strip */}
               <div className="rating-appointment d-inline-flex align-items-center gap-2">
                 <div className="avatar-list-stacked avatar-group-lg">
@@ -53,7 +53,7 @@ export default function Banner() {
               </h1>
 
               {/* search box */}
-              <div className="search-box-one aos" data-aos="fade-up">
+              <div className="search-box-one aos">
                 <form action="search-2.html">
                   <div className="search-input search-line">
                     <i className="isax isax-hospital5 bficon"></i>
@@ -93,7 +93,7 @@ export default function Banner() {
 
           {/* ---------- right column ---------- */}
           <div className="col-lg-5">
-            <div className="banner-img aos" data-aos="fade-up">
+            <div className="banner-img aos" >
               <img
                 src="/assets/img/banner/banner-doctor.svg"
                 className="img-fluid"

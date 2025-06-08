@@ -1,13 +1,16 @@
-/* globals.css – example */
+/* ------------------------------------------------------------------------
+   1.  Tailwind layers (compiled by PostCSS/Tailwind)                    
+   --------------------------------------------------------------------- */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "bootstrap/dist/css/bootstrap.min.css";
 
-/* Owl core styles */
-@import "react-owl-carousel/dist/assets/owl.carousel.css";
-@import "react-owl-carousel/dist/assets/owl.theme.default.css";
-
-/* AOS (Animate-On-Scroll) */
-@import "aos/dist/aos.css";
-/* your custom overrides here */ 
+/* ------------------------------------------------------------------------
+   2.  Third-party libraries pulled from node_modules                     
+       (only keep ONE carousel lib → Swiper; Owl/Slick can go later)      
+   --------------------------------------------------------------------- */
+@import "bootstrap/dist/css/bootstrap.min.css";  /* grid & utilities       */
+@import "aos/dist/aos.css";                      /* scroll-animation        */
+@import "swiper/css";                            /* Swiper core             */
+@import "swiper/css/navigation";                /* Swiper nav arrows       */
+@import "swiper/css/pagination";                /* Swiper dots             */

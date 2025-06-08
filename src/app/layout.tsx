@@ -8,6 +8,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import InfoSection from '../components/InfoSection';
 import Loading from '../components/Loading';
+import RuntimeEffects from '../components/RuntimeEffects';
 
 export const metadata = {
   metadataBase: new URL('https://doccure.dreamstechnologies.com'),
@@ -76,6 +77,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <Suspense fallback={<Loading />}>{children}</Suspense>{' '}
           </main>
           <InfoSection />
+          <RuntimeEffects />
           <Footer />
 
           {/* core JS */}
@@ -84,8 +86,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
           {/* plugin JS */}
           <Script src="/assets/js/jquery-3.7.1.min.js" strategy="beforeInteractive" />
-          <Script src="/assets/js/owl.carousel.min.js" strategy="beforeInteractive" />
-          <Script src="/assets/js/aos.js" strategy="beforeInteractive" />
+          <Script src="/assets/js/owl.carousel.min.js" strategy="afterInteractive" />
+          {/* <Script src="/assets/js/aos.js"            strategy="afterInteractive" /> */}
 
           <Script src="/assets/js/slick.js" strategy="beforeInteractive" />
           <Script src="/assets/js/moment.min.js" strategy="beforeInteractive" />

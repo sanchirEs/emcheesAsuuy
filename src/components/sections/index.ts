@@ -1,0 +1,11 @@
+export { default as DoctorSection } from './DoctorSection';
+export { default as FaqSection } from './FaqSection';
+export { default as ReasonsSection } from './ReasonsSection';
+export { default as AppSection } from './AppSection';
+export { default as ArticSection } from './ArticSection';
+export { default as BookusSection } from './BookusSection';
+export { default as CompanySection } from './CompanySection';
+export { default as InfoSection } from './InfoSection';
+export { default as ServiceSection } from './ServiceSection';
+export { default as TestimonialSection } from './TestimonialSection';
+export { default as ListSection } from './ListSection'; 

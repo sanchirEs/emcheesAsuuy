@@ -1,20 +1,26 @@
 // app/page.tsx
-import Banner from '../components/Banner';
-import Speciality from '../components/Speciality';
-import ListSection from '../components/ListSection';
-import DoctorSection from '../components/DoctorSection';
-import ServiceSection from '../components/ServiceSection';
-import ReasonsSection from '../components/ReasonsSection';
-import BookusSection from '../components/BookusSection';
-import TestimonialSection from '../components/TestimonialSection';
-import CompanySection from '../components/CompanySection';
-import FaqSection from '../components/FaqSection';
-import AppSection from '../components/AppSection';
-import ArticleSection from '../components/ArticSection';
+import { Banner, Speciality } from '@/components/ui';
+import {
+  ListSection,
+  DoctorSection,
+  ServiceSection,
+  ReasonsSection,
+  BookusSection,
+  TestimonialSection,
+  CompanySection,
+  FaqSection,
+  AppSection,
+  ArticSection as ArticleSection,
+} from '@/components/sections';
+
+export const metadata = {
+  title: 'Emchees Asuuy | Your Healthcare Platform',
+  description: 'Welcome to Emchees Asuuy - Your trusted healthcare platform.',
+};
 
 export default function HomePage() {
   return (
-    <>
+    <main className="flex min-h-screen flex-col">
       <Banner />
       <ListSection />
       <Speciality />
@@ -27,6 +33,6 @@ export default function HomePage() {
       <FaqSection />
       <AppSection />
       <ArticleSection />
-    </>
+    </main>
   );
 }

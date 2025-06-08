@@ -1,37 +1,34 @@
 // src/app/layout.tsx
 import './globals.css';
-import { ReactNode } from 'react';
-import { Suspense } from 'react';
+import { ReactNode, Suspense } from 'react';
 import Script from 'next/script';
-import Topbar from '../components/Topbar';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
-import InfoSection from '../components/InfoSection';
-import Loading from '../components/Loading';
-import RuntimeEffects from '../components/RuntimeEffects';
+import { Header, Footer, Topbar } from '@/components/layout';
+import { InfoSection } from '@/components/sections';
+import { RuntimeEffects } from '@/components/ui';
+import { Loading } from '@/components/shared';
 
 export const metadata = {
-  metadataBase: new URL('https://doccure.dreamstechnologies.com'),
-  title: 'Doccure',
+  metadataBase: new URL('https://emchees-asuuy.com'),
+  title: 'Emchees Asuuy',
   description:
-    'The responsive professional Doccure template offers many features, like scheduling appointments with top doctors, clinics, and hospitals via voice, video call & chat.',
+    'Your trusted healthcare platform for scheduling appointments with top doctors, clinics, and hospitals.',
   keywords:
-    'practo clone, doccure, doctor appointment, Practo clone html template, doctor booking template',
-  authors: [{ name: 'Practo Clone HTML Template - Doctor Booking Template' }],
+    'healthcare, doctor appointment, medical services, online booking, medical consultation',
+  authors: [{ name: 'Emchees Asuuy' }],
   openGraph: {
-    url: 'https://doccure.dreamstechnologies.com/html/',
+    url: 'https://emchees-asuuy.com',
     type: 'website',
-    title: 'Doctors Appointment HTML Website Templates | Doccure',
+    title: 'Emchees Asuuy | Your Healthcare Platform',
     description:
-      'The responsive professional Doccure template offers many features, like scheduling appointments with top doctors, clinics, and hospitals via voice, video call & chat.',
-    images: [{ url: '/assets/img/preview-banner.jpg' }],
+      'Your trusted healthcare platform for scheduling appointments with top doctors, clinics, and hospitals.',
+    images: [{ url: '/assets/img/og-image.jpg' }],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Doctors Appointment HTML Website Templates | Doccure',
+    title: 'Emchees Asuuy | Your Healthcare Platform',
     description:
-      'The responsive professional Doccure template offers many features, like scheduling appointments with top doctors, clinics, and hospitals via voice, video call & chat.',
-    images: [{ url: '/assets/img/preview-banner.jpg' }],
+      'Your trusted healthcare platform for scheduling appointments with top doctors, clinics, and hospitals.',
+    images: [{ url: '/assets/img/og-image.jpg' }],
   },
   icons: {
     icon: '/assets/img/favicon.png',
@@ -41,10 +38,8 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    // 1️⃣ Add default theme class here:
     <html lang="en" className="light-mode">
       <head>
-        {/* 2️⃣ Load the theme-script BEFORE React hydration */}
         <Script src="/assets/js/theme-script.js" strategy="beforeInteractive" />
 
         {/* favicon */}
@@ -74,7 +69,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <Topbar />
           <Header />
           <main>
-            <Suspense fallback={<Loading />}>{children}</Suspense>{' '}
+            <Suspense fallback={<Loading />}>{children}</Suspense>
           </main>
           <InfoSection />
           <RuntimeEffects />
@@ -85,10 +80,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <Script src="/assets/js/bootstrap.bundle.min.js" strategy="beforeInteractive" />
 
           {/* plugin JS */}
-          <Script src="/assets/js/jquery-3.7.1.min.js" strategy="beforeInteractive" />
           <Script src="/assets/js/owl.carousel.min.js" strategy="afterInteractive" />
-          {/* <Script src="/assets/js/aos.js"            strategy="afterInteractive" /> */}
-
           <Script src="/assets/js/slick.js" strategy="beforeInteractive" />
           <Script src="/assets/js/moment.min.js" strategy="beforeInteractive" />
           <Script src="/assets/js/bootstrap-datetimepicker.min.js" strategy="beforeInteractive" />
@@ -98,21 +90,21 @@ export default function RootLayout({ children }: { children: ReactNode }) {
 
           {/* one-time initialisers */}
           <Script id="init-vendor" strategy="afterInteractive">{`
-          window.AOS && AOS.init({ once: true });
-          if (window.jQuery && typeof jQuery.fn.owlCarousel === 'function') {
-            jQuery('.owl-carousel').each(function () {
-              if (!jQuery(this).hasClass('owl-loaded')) {
-                jQuery(this).owlCarousel({
-                  loop: true,
-                  margin: 24,
-                  nav: true,
-                  dots: false,
-                  responsive: {0:{items:1},576:{items:2},768:{items:3},1200:{items:4}}
-                });
-              }
-            });
-          }
-        `}</Script>
+            window.AOS && AOS.init({ once: true });
+            if (window.jQuery && typeof jQuery.fn.owlCarousel === 'function') {
+              jQuery('.owl-carousel').each(function () {
+                if (!jQuery(this).hasClass('owl-loaded')) {
+                  jQuery(this).owlCarousel({
+                    loop: true,
+                    margin: 24,
+                    nav: true,
+                    dots: false,
+                    responsive: {0:{items:1},576:{items:2},768:{items:3},1200:{items:4}}
+                  });
+                }
+              });
+            }
+          `}</Script>
         </div>
       </body>
     </html>

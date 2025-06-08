@@ -1,13 +1,27 @@
-// tailwind.config.js
+/** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: ['./src/**/*.{ts,tsx}'],
+  content: [
+    './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    './src/app/**/*.{js,ts,jsx,tsx,mdx}',
+  ],
 
   corePlugins: {
-    preflight: false,   // ← disables Tailwind’s CSS reset
+    preflight: false,   // ← disables Tailwind's CSS reset
     container: false,   // ← stops Tailwind from touching .container
   },
 
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        primary: '#007AFF',
+        secondary: '#64748B',
+      },
+      fontFamily: {
+        sans: ['var(--font-inter)'],
+      },
+    },
   },
+
+  plugins: [],
 };

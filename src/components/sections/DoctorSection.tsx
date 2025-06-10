@@ -84,7 +84,7 @@ export default function DoctorSection() {
                     <h3 className="text-orange">$650</h3>
                   </div>
                   <a
-                    href="booking.html"
+                    href="/booking"
                     className="btn btn-md btn-dark d-inline-flex align-items-center rounded-pill"
                   >
                     <i className="isax isax-calendar-1 me-2"></i>

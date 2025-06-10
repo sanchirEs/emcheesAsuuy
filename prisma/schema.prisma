@@ -1,19 +1,15 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// Simplified Prisma schema with core models
+// Run: npx prisma generate && npx prisma db push
 
 generator client {
   provider = "prisma-client-js"
-  output   = "../generated/prisma"
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
 }
-
 
 /// — Core tenant organization
 model Clinic {
@@ -26,14 +22,9 @@ model Clinic {
   city              String?
   state             String?
   country           String           @default("Mongolia")
-  postalCode        String?
   timezone          String           @default("Asia/Ulaanbaatar")
-  currency          String           @default("MNT")
-  businessHours     Json?            // Store flexible hours structure
   
-  // Subscription & business logic
-  subscription      SubscriptionPlan @relation(fields: [subscriptionId], references: [id])
-  subscriptionId    String
+  // Basic subscription
   maxDoctors        Int              @default(5)
   maxAppointments   Int              @default(1000) // per month
   isActive          Boolean          @default(true)
@@ -41,64 +32,17 @@ model Clinic {
   // Relationships
   doctors           Doctor[]
   appointments      Appointment[]
-  clinicSettings    ClinicSettings?
-  paymentMethods    PaymentMethod[]
-  notifications     NotificationLog[]
+  // users             User[]
   
   // Audit
   createdAt         DateTime         @default(now())
   updatedAt         DateTime         @updatedAt
-  createdBy         String?          // Admin user ID
   
   @@index([slug])
   @@index([isActive])
 }
 
-/// — Subscription tiers for SaaS model
-model SubscriptionPlan {
-  id              String    @id @default(uuid())
-  name            String    @unique // "Basic", "Pro", "Enterprise"
-  maxDoctors      Int
-  maxAppointments Int       // per month
-  priceCents      Int       // monthly price
-  features        Json      // flexible feature flags
-  isActive        Boolean   @default(true)
-  
-  clinics         Clinic[]
-  createdAt       DateTime  @default(now())
-  updatedAt       DateTime  @updatedAt
-}
-
-/// — Clinic-specific configuration
-model ClinicSettings {
-  id                    String   @id @default(uuid())
-  clinic                Clinic   @relation(fields: [clinicId], references: [id], onDelete: Cascade)
-  clinicId              String   @unique
-  
-  // Booking rules
-  advanceBookingDays    Int      @default(30)  // How far ahead patients can book
-  minBookingNoticeHours Int      @default(2)   // Minimum notice required
-  maxAppointmentsPerDay Int      @default(10)  // Per patient limit
-  
-  // Cancellation policy
-  cancellationHours     Int      @default(24)  // Hours before appointment
-  cancellationFeePercent Float   @default(0)   // Penalty fee %
-  
-  // Notification preferences
-  emailNotifications    Boolean  @default(true)
-  smsNotifications      Boolean  @default(false)
-  reminderHours         Int[]    @default([24, 2]) // Hours before appointment
-  
-  // Branding
-  logoUrl               String?
-  primaryColor          String   @default("#007bff")
-  customDomain          String?
-  
-  createdAt             DateTime @default(now())
-  updatedAt             DateTime @updatedAt
-}
-
-/// — Enhanced doctor profiles with verification
+/// — Doctors in the clinic
 model Doctor {
   id                String              @id @default(uuid())
   clinic            Clinic              @relation(fields: [clinicId], references: [id], onDelete: Cascade)
@@ -109,30 +53,16 @@ model Doctor {
   email             String?
   phone             String?
   bio               String?
-  profileImageUrl   String?
   
-  // Professional credentials
-  licenseNumber     String?
+  // Professional info
+  specialty         String?
   yearsExperience   Int                 @default(0)
-  education         Json?               // Degrees, certifications
-  languages         String[]            @default(["Mongolian"])
   
-  // Business metrics
-  rating            Float               @default(0)
-  totalReviews      Int                 @default(0)
-  totalAppointments Int                 @default(0)
-  
-  // Status & verification
+  // Status
   isActive          Boolean             @default(true)
-  isVerified        Boolean             @default(false)
-  verifiedAt        DateTime?
   
   // Relationships
-  specialties       DoctorSpecialty[]
-  services          Service[]
-  availabilities    Availability[]
   appointments      Appointment[]
-  reviews           Review[]
   
   // Audit
   createdAt         DateTime            @default(now())
@@ -140,158 +70,13 @@ model Doctor {
   
   @@unique([clinicId, email])
   @@index([clinicId, isActive])
-  @@index([rating, totalReviews])
 }
 
-/// — Medical specialties with hierarchy
-model Specialty {
-  id          String            @id @default(uuid())
-  name        String            @unique
-  description String?
-  parentId    String?           // For specialty hierarchy
-  parent      Specialty?        @relation("SpecialtyHierarchy", fields: [parentId], references: [id])
-  children    Specialty[]       @relation("SpecialtyHierarchy")
-  
-  // Relationships
-  doctors     DoctorSpecialty[]
-  
-  // Metadata
-  isActive    Boolean           @default(true)
-  sortOrder   Int               @default(0)
-  createdAt   DateTime          @default(now())
-  updatedAt   DateTime          @updatedAt
-  
-  @@index([parentId])
-  @@index([isActive, sortOrder])
-}
-
-/// — Enhanced doctor-specialty junction with certification
-model DoctorSpecialty {
-  doctor        Doctor     @relation(fields: [doctorId], references: [id], onDelete: Cascade)
-  doctorId      String
-  specialty     Specialty  @relation(fields: [specialtyId], references: [id])
-  specialtyId   String
-  
-  // Certification details
-  certifiedAt   DateTime?
-  certifyingBody String?
-  isPrimary     Boolean    @default(false) // One primary specialty per doctor
-  
-  createdAt     DateTime   @default(now())
-  
-  @@id([doctorId, specialtyId])
-  @@index([doctorId, isPrimary])
-}
-
-/// — Enhanced services with booking rules
-model Service {
+/// — Users (formerly patients)
+model User {
   id              String        @id @default(uuid())
-  doctor          Doctor        @relation(fields: [doctorId], references: [id], onDelete: Cascade)
-  doctorId        String
-  
-  // Service details
-  title           String
-  description     String?
-  category        ServiceCategory @default(CONSULTATION)
-  
-  // Scheduling
-  durationMin     Int
-  bufferMin       Int           @default(0)    // Buffer time after appointment
-  
-  // Pricing
-  priceCents      Int
-  depositPercent  Float         @default(0)    // Required deposit %
-  
-  // Booking rules
-  isActive        Boolean       @default(true)
-  requiresDeposit Boolean       @default(false)
-  maxAdvanceDays  Int?          // Override clinic setting
-  
-  // Relationships
-  appointments    Appointment[]
-  
-  // Audit
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @updatedAt
-  
-  @@index([doctorId, isActive])
-  @@index([category])
-}
-
-enum ServiceCategory {
-  CONSULTATION
-  PROCEDURE
-  SURGERY
-  FOLLOW_UP
-  EMERGENCY
-}
-
-/// — Enhanced availability with break handling
-model Availability {
-  id          String     @id @default(uuid())
-  doctor      Doctor     @relation(fields: [doctorId], references: [id], onDelete: Cascade)
-  doctorId    String
-  
-  // Timing
-  weekday     Int        // 0=Sunday … 6=Saturday
-  startTime   String     // "09:00"
-  endTime     String     // "17:00"
-  
-  // Capacity management
-  capacity    Int        @default(1)
-  slotDuration Int       @default(30) // minutes per slot
-  
-  // Breaks and exceptions
-  breaks      Json?      // Array of break periods: [{"start": "12:00", "end": "13:00"}]
-  
-  // Validity period
-  validFrom   DateTime?  // Start date for this availability
-  validTo     DateTime?  // End date (null = ongoing)
-  
-  // Status
-  isActive    Boolean    @default(true)
-  
-  // Relationships
-  exceptions  AvailabilityException[]
-  
-  createdAt   DateTime   @default(now())
-  updatedAt   DateTime   @updatedAt
-
-  @@unique([doctorId, weekday, startTime, endTime, validFrom])
-  @@index([doctorId, weekday, isActive])
-}
-
-/// — Handle one-time availability changes
-model AvailabilityException {
-  id             String       @id @default(uuid())
-  availability   Availability @relation(fields: [availabilityId], references: [id], onDelete: Cascade)
-  availabilityId String
-  
-  // Exception details
-  date           DateTime     // Specific date
-  type           ExceptionType
-  
-  // Override settings (only for MODIFIED type)
-  newStartTime   String?
-  newEndTime     String?
-  newCapacity    Int?
-  reason         String?
-  
-  createdAt      DateTime     @default(now())
-  
-  @@unique([availabilityId, date])
-  @@index([date, type])
-}
-
-enum ExceptionType {
-  CLOSED      // Doctor not available
-  MODIFIED    // Different hours/capacity
-  HOLIDAY     // Clinic holiday
-}
-
-/// — Enhanced patient profiles with preferences
-model Patient {
-  id              String        @id @default(uuid())
+  // clinic          Clinic        @relation(fields: [clinicId], references: [id])
+  // clinicId        String
   
   // Personal info
   fullName        String
@@ -299,25 +84,18 @@ model Patient {
   phone           String?
   dateOfBirth     DateTime?
   gender          Gender?
+  password        String
   
   // Address
   address         String?
   city            String?
-  emergencyContact String?
-  emergencyPhone  String?
   
-  // Medical history
-  allergies       String[]      @default([])
-  medications     String[]      @default([])
+  // Medical basics
+  // allergies       String[]      @default([])
   medicalHistory  String?
-  
-  // Preferences
-  preferredLanguage String      @default("Mongolian")
-  communicationPrefs Json?      // Email, SMS, call preferences
   
   // Relationships
   appointments    Appointment[]
-  reviews         Review[]
   
   // Status
   isActive        Boolean       @default(true)
@@ -327,7 +105,7 @@ model Patient {
   updatedAt       DateTime      @updatedAt
   
   @@index([email])
-  @@index([phone])
+  // @@index([clinicId])
 }
 
 enum Gender {
@@ -337,7 +115,7 @@ enum Gender {
   PREFER_NOT_TO_SAY
 }
 
-/// — Enhanced appointments with workflow
+/// — Core appointments
 model Appointment {
   id            String            @id @default(uuid())
   
@@ -346,40 +124,23 @@ model Appointment {
   clinicId      String
   doctor        Doctor            @relation(fields: [doctorId], references: [id])
   doctorId      String
-  patient       Patient           @relation(fields: [patientId], references: [id])
-  patientId     String
-  service       Service           @relation(fields: [serviceId], references: [id])
-  serviceId     String
+  user          User              @relation(fields: [userId], references: [id])
+  userId        String
   
   // Scheduling
   startAt       DateTime
   endAt         DateTime
   
-  // Status management
+  // Status
   status        AppointmentStatus @default(PENDING)
-  statusHistory Json?             // Track status changes with timestamps
   
-  // Business details
-  totalCents    Int               // Total cost
-  depositCents  Int               @default(0)
-  
-  // Communication
-  notes         String?           // Internal notes
-  patientNotes  String?           // Patient-provided notes
-  instructions  String?           // Pre/post appointment instructions
-  
-  // Reminders
-  remindersSent Json?             // Track which reminders were sent
+  // Basic details
+  totalCents    Int               @default(0)
+  notes         String?
   
   // Cancellation
   cancelledAt   DateTime?
-  cancelledBy   String?           // USER_ID or SYSTEM
   cancellationReason String?
-  refundCents   Int               @default(0)
-  
-  // Relationships
-  payments      Payment[]
-  review        Review?
   
   // Audit
   createdAt     DateTime          @default(now())
@@ -387,176 +148,14 @@ model Appointment {
   
   @@index([clinicId, startAt])
   @@index([doctorId, startAt])
-  @@index([patientId, startAt])
+  @@index([userId, startAt])
   @@index([status, startAt])
-  @@index([startAt]) // For reminder jobs
 }
 
-/// — Enhanced appointment status workflow
 enum AppointmentStatus {
-  PENDING       // Initial booking
-  CONFIRMED     // Confirmed by clinic
-  CHECKED_IN    // Patient arrived
-  IN_PROGRESS   // Appointment in session
-  COMPLETED     // Finished successfully
-  NO_SHOW       // Patient didn't arrive
-  CANCELLED     // Cancelled by patient/clinic
-  RESCHEDULED   // Moved to different time
-}
-
-/// — Payment tracking
-model Payment {
-  id            String        @id @default(uuid())
-  appointment   Appointment   @relation(fields: [appointmentId], references: [id])
-  appointmentId String
-  
-  // Payment details
-  amountCents   Int
-  type          PaymentType
-  status        PaymentStatus @default(PENDING)
-  
-  // Payment method
-  paymentMethod PaymentMethod @relation(fields: [paymentMethodId], references: [id])
-  paymentMethodId String
-  
-  // External references
-  externalId    String?       // Stripe, PayPal, etc.
-  receiptUrl    String?
-  
-  // Metadata
-  notes         String?
-  processedAt   DateTime?
-  
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
-  
-  @@index([appointmentId])
-  @@index([status, createdAt])
-}
-
-enum PaymentType {
-  FULL_PAYMENT
-  DEPOSIT
-  REFUND
-  PARTIAL_REFUND
-}
-
-enum PaymentStatus {
   PENDING
+  CONFIRMED
   COMPLETED
-  FAILED
-  REFUNDED
-  PARTIALLY_REFUNDED
-}
-
-/// — Payment methods per clinic
-model PaymentMethod {
-  id          String      @id @default(uuid())
-  clinic      Clinic      @relation(fields: [clinicId], references: [id])
-  clinicId    String
-  
-  // Method details
-  type        PaymentMethodType
-  name        String      // Display name
-  isActive    Boolean     @default(true)
-  
-  // Configuration (encrypted)
-  config      Json        // API keys, merchant IDs, etc.
-  
-  // Relationships
-  payments    Payment[]
-  
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
-  
-  @@index([clinicId, isActive])
-}
-
-enum PaymentMethodType {
-  CASH
-  CARD
-  BANK_TRANSFER
-  DIGITAL_WALLET
-  INSURANCE
-}
-
-/// — Patient reviews and ratings
-model Review {
-  id            String      @id @default(uuid())
-  appointment   Appointment @relation(fields: [appointmentId], references: [id])
-  appointmentId String      @unique
-  patient       Patient     @relation(fields: [patientId], references: [id])
-  patientId     String
-  doctor        Doctor      @relation(fields: [doctorId], references: [id])
-  doctorId      String
-  
-  // Review content
-  rating        Int         // 1-5 stars
-  comment       String?
-  
-  // Moderation
-  isVisible     Boolean     @default(true)
-  moderatedAt   DateTime?
-  moderatedBy   String?
-  
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
-  
-  @@index([doctorId, isVisible])
-  @@index([rating, createdAt])
-}
-
-/// — System notifications and audit log
-model NotificationLog {
-  id        String           @id @default(uuid())
-  clinic    Clinic?          @relation(fields: [clinicId], references: [id])
-  clinicId  String?
-  
-  // Notification details
-  type      NotificationType
-  channel   NotificationChannel
-  recipient String           // Email or phone
-  subject   String?
-  message   String
-  
-  // Delivery tracking
-  status    NotificationStatus @default(PENDING)
-  sentAt    DateTime?
-  deliveredAt DateTime?
-  errorMessage String?
-  
-  // Context
-  entityType String?         // "appointment", "payment", etc.
-  entityId   String?         // Related record ID
-  
-  createdAt DateTime         @default(now())
-  
-  @@index([type, status])
-  @@index([clinicId, createdAt])
-  @@index([entityType, entityId])
-}
-
-enum NotificationType {
-  APPOINTMENT_REMINDER
-  APPOINTMENT_CONFIRMED
-  APPOINTMENT_CANCELLED
-  PAYMENT_RECEIVED
-  PAYMENT_FAILED
-  REVIEW_REQUEST
-  SYSTEM_ALERT
-}
-
-enum NotificationChannel {
-  EMAIL
-  SMS
-  PUSH
-  IN_APP
-}
-
-enum NotificationStatus {
-  PENDING
-  SENT
-  DELIVERED
-  FAILED
-  BOUNCED
+  CANCELLED
+  NO_SHOW
 }
